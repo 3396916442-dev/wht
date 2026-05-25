@@ -1,0 +1,21 @@
+# 仅用于 docker compose 本地开发：源码挂载 + pnpm dev 热重载
+FROM node:20-alpine
+
+ENV PNPM_HOME=/pnpm
+ENV PATH=$PNPM_HOME:$PATH
+
+# Docker for Mac/Windows 下 inotify 事件穿透不稳定，启用轮询确保热重载生效
+ENV WATCHPACK_POLLING=true
+ENV CHOKIDAR_USEPOLLING=true
+
+RUN corepack enable
+
+WORKDIR /app
+
+# 先单独装依赖，享受 docker layer cache
+COPY package.json pnpm-lock.yaml* ./
+RUN pnpm install
+
+# 实际源码通过 docker compose volumes 挂载进来
+EXPOSE 3000
+CMD ["pnpm", "dev"]

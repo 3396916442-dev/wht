@@ -1,0 +1,17 @@
+node_modules/
+.next/
+dist/
+build/
+.env
+.env.local
+.env.production
+.env.development
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+*.log
+mysql_data/
+redis_data/
+data/
