@@ -14,4 +14,5 @@ venv/
 *.log
 mysql_data/
 redis_data/
-data/
+# 只忽略仓库根目录的本地运行数据，避免误忽略 backend/app/data Python 模块
+/data/
