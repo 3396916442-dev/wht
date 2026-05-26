@@ -6,6 +6,8 @@ RUN corepack enable
 FROM base AS deps
 WORKDIR /app
 COPY package.json pnpm-lock.yaml* ./
+RUN npm config set registry https://registry.npmmirror.com
+RUN pnpm config set registry https://registry.npmmirror.com
 RUN pnpm install --frozen-lockfile || pnpm install
 
 FROM base AS builder
