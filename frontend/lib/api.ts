@@ -23,7 +23,7 @@ import type {
 } from "@/types/admin";
 import { getAccessToken } from "@/lib/auth";
 
-const RAW_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000";
+const RAW_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "/api/v1";
 const ROOT_BASE_URL = RAW_BASE_URL.replace(/\/api\/v\d+\/?$/, "");
 const API_BASE_URL = `${ROOT_BASE_URL}/api/v1`;
 

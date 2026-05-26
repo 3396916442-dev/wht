@@ -70,7 +70,7 @@ export default function AdminUserDetailPage() {
   }
 
   async function onSave() {
-    if (!user) return;
+    if (!user || !currentUser) return;
     setLoading(true);
     setError(null);
     try {

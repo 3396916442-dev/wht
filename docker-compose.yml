@@ -1,7 +1,6 @@
 # ============================================================
-# docker-compose.yml —— 本地开发环境
+# docker-compose.yml —— 部署环境
 # 仅包含四个服务：mysql / redis / backend / frontend
-# 后端 uvicorn --reload，前端 pnpm dev，均挂载源码实现热更新
 # 不引入 Nginx / Kubernetes / 微服务等额外组件
 # ============================================================
 
@@ -78,7 +77,10 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-http://8.219.240.87:8000/api/v1}
+        NEXT_PUBLIC_AUTH_API_BASE_URL: ${NEXT_PUBLIC_AUTH_API_BASE_URL:-http://8.219.240.87:8000/api/auth}
     container_name: quant-frontend
     restart: unless-stopped
     env_file:
@@ -87,11 +89,6 @@ services:
       - backend
     ports:
       - "3000:3000"
-    volumes:
-      - ./frontend:/app
-      # 用匿名卷"屏蔽"宿主机 node_modules 与 .next，避免覆盖容器内安装结果
-      - /app/node_modules
-      - /app/.next
 
 volumes:
   mysql_data:

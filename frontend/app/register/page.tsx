@@ -72,7 +72,6 @@ export default function RegisterPage() {
       router.push("/login");
     } catch (error) {
       // 打印详细错误信息以便排查 Network Error
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       console.error("register error", {
         message: error instanceof Error ? error.message : String(error),
         status: (error as any)?.response?.status,

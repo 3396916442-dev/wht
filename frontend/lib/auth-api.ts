@@ -11,7 +11,7 @@ import type {
 } from "@/types/auth";
 
 const AUTH_BASE_URL =
-  process.env.NEXT_PUBLIC_AUTH_API_BASE_URL ?? "http://localhost:8000/api/auth";
+  process.env.NEXT_PUBLIC_AUTH_API_BASE_URL ?? "/api/auth";
 
 export class AuthApiError extends Error {
   constructor(

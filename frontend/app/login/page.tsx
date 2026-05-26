@@ -41,7 +41,6 @@ export default function LoginPage() {
       // 打印详细错误信息以便排查 Network Error
       // 包括 axios 的 response / config（在浏览器控制台可见）
       // 不改动 UI，仅增加控制台日志
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       console.error("login error", {
         message: error instanceof Error ? error.message : String(error),
         status: (error as any)?.response?.status,

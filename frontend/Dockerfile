@@ -10,6 +10,10 @@ RUN pnpm install --frozen-lockfile || pnpm install
 
 FROM base AS builder
 WORKDIR /app
+ARG NEXT_PUBLIC_API_BASE_URL
+ARG NEXT_PUBLIC_AUTH_API_BASE_URL
+ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL
+ENV NEXT_PUBLIC_AUTH_API_BASE_URL=$NEXT_PUBLIC_AUTH_API_BASE_URL
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN pnpm build
